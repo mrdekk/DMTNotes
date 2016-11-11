@@ -1,0 +1,7 @@
+# This file contains configuration for swiftlint (https://github.com/realm/SwiftLint)
+
+disabled_rules: # rule identifiers to exclude from running
+ - trailing_whitespace
+
+# rules config
+line_length: 120
