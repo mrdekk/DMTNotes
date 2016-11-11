@@ -8,12 +8,11 @@
 
 import Foundation
 
-
 protocol DataServiceProtocol : class, NSObjectProtocol {
-    func getNotesGeneration() -> Int
     func getNotes() -> [Note]
+    func getNotesCount() -> Int
     func getNote(noteId: Int) -> Note?
-    func addNote(note: Note)
+    func addNote(note: Note) -> Int
     func removeNote(noteId: Int)
     func updateNote(noteId: Int, note: Note)
 }

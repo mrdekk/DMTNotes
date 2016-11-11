@@ -16,12 +16,6 @@ class DumbDataService: NSObject, DataServiceProtocol {
         createTestNotes()
     }
 
-    private var notesListGen: Int = 0
-
-    func getNotesGeneration() -> Int {
-        return notesListGen
-    }
-
     private func createTestNotes() {
         let count = 15
         for i in 0..<count {
@@ -33,7 +27,10 @@ class DumbDataService: NSObject, DataServiceProtocol {
 
             backingStorage.append(note)
         }
-        notesListGen += 1
+    }
+    
+    func getNotesCount() -> Int {
+        return backingStorage.count
     }
 
     func getNotes() -> [Note] {
@@ -47,22 +44,21 @@ class DumbDataService: NSObject, DataServiceProtocol {
         return nil
     }
 
-    func addNote(note: Note) {
+    func addNote(note: Note) -> Int {
+        let id = backingStorage.count
         backingStorage += [note]
-        notesListGen += 1
+        return id
     }
 
     func updateNote(noteId: Int, note: Note) {
         if noteId >= 0 && noteId < backingStorage.count {
             backingStorage[noteId] = note
-            notesListGen += 1
         }
     }
 
     func removeNote(noteId: Int) {
         if noteId >= 0 && noteId < backingStorage.count {
             backingStorage.remove(at: noteId)
-            notesListGen += 1
         }
     }
 }

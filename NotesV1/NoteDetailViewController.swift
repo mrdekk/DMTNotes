@@ -26,6 +26,9 @@ class NoteDetailViewController: UIViewController, UITextViewDelegate,
     @IBOutlet weak var scrollView: UIScrollView!
 
     var textEditingControl: UITextInput? = nil
+    
+    // handler(note: Note?) - nil means note was deleted
+    var dataObjectUpdated: ((Note?) -> ())?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -144,10 +147,8 @@ class NoteDetailViewController: UIViewController, UITextViewDelegate,
     }
 
     private func deleteConfirmed() {
-        if let noteId = noteId {
-            serviceLocator.dataService.removeNote(noteId: noteId)
-        }
-
+        dataObjectUpdated?(nil)
+        
         _ = self.navigationController?.popViewController(animated: true)
     }
 
@@ -160,50 +161,18 @@ class NoteDetailViewController: UIViewController, UITextViewDelegate,
             item.desc = descriptionField.text
             item.title = titleField.text
             
-            if let noteId = noteId {
-                serviceLocator.dataService.updateNote(noteId: noteId, note: dataItem!)
-            } else {
-                serviceLocator.dataService.addNote(note: dataItem!)
-            }
+            dataObjectUpdated?(item)
         }
 
         _ = self.navigationController?.popViewController(animated: true)
     }
-
-    func openAsNew() {
-        self.noteId = nil
-
-        let n = Note()
-        n.colorId = 0
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .full
-        let ts = dateFormatter.string(from: Date())
-        n.title = "Note " + ts
-        n.desc = "Note created at " + ts
-        self.dataItem = n
-    }
-
-    func openAsEdit(noteId: Int) -> Bool {
-        // TODO move this logic to parent VC
-        self.noteId = noteId
-
-        guard let note = serviceLocator.dataService.getNote(noteId: noteId)
-            else {
-            return false
-        }
-        
+    
+    func openWithObject(_ note: Note?) {
         dataItem = note
-        
-        return true
+        configureView()
     }
-
-    private var noteId: Int?
-
-    private var dataItem: Note? {
-        didSet {
-            self.configureView()
-        }
-    }
+    
+    private var dataItem: Note?
 
     private func configureView() {
         guard
@@ -213,13 +182,26 @@ class NoteDetailViewController: UIViewController, UITextViewDelegate,
             else {
             return
         }
+        
+        let isNewNote = dataItem == nil
 
-        if noteId == nil {
+        if isNewNote {
             // hide delete button
             self.navigationItem.setRightBarButtonItems([saveButton], animated: false)
         } else {
             // show delete button
             self.navigationItem.setRightBarButtonItems([deleteButton, saveButton], animated: false)
+        }
+        
+        if isNewNote {
+            let n = Note()
+            n.colorId = 0
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .full
+            let ts = dateFormatter.string(from: Date())
+            n.title = "Note " + ts
+            n.desc = "Note created at " + ts
+            self.dataItem = n
         }
 
         if let data = dataItem {
