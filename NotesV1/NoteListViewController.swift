@@ -13,15 +13,10 @@ class NoteListViewController: UIViewController {
     private let serviceLocator = AppDelegate.shared.serviceLocator!
 
     @IBOutlet weak var tableView: UITableView!
-    private var notesListGeneration: Int = 0
-    private let notesListDataSource: NoteListDataSource = NoteListDataSource()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
-        tableView.dataSource = notesListDataSource
-        tableView.delegate = notesListDataSource
     }
     
     var selectedNoteId: Int?
