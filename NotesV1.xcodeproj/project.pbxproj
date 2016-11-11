@@ -24,6 +24,8 @@
 		34876F1E1DD5B38400D00E91 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34876F1D1DD5B38400D00E91 /* Note.swift */; };
 		34876F201DD5B3A600D00E91 /* DataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34876F1F1DD5B3A600D00E91 /* DataServiceProtocol.swift */; };
 		34876F221DD5B4A700D00E91 /* NoteListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34876F211DD5B4A700D00E91 /* NoteListViewCell.swift */; };
+		34876F241DD5E48100D00E91 /* NoteListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34876F231DD5E48100D00E91 /* NoteListDataSource.swift */; };
+		34876F261DD5E4E300D00E91 /* ColorsListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34876F251DD5E4E300D00E91 /* ColorsListDataSource.swift */; };
 		34C60CAD1DC871A800E19B40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C60CAC1DC871A800E19B40 /* AppDelegate.swift */; };
 		34C60CAF1DC871A800E19B40 /* NoteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C60CAE1DC871A800E19B40 /* NoteListViewController.swift */; };
 		34C60CB21DC871A800E19B40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34C60CB01DC871A800E19B40 /* Main.storyboard */; };
@@ -70,6 +72,8 @@
 		34876F1D1DD5B38400D00E91 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		34876F1F1DD5B3A600D00E91 /* DataServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServiceProtocol.swift; sourceTree = "<group>"; };
 		34876F211DD5B4A700D00E91 /* NoteListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteListViewCell.swift; sourceTree = "<group>"; };
+		34876F231DD5E48100D00E91 /* NoteListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteListDataSource.swift; sourceTree = "<group>"; };
+		34876F251DD5E4E300D00E91 /* ColorsListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorsListDataSource.swift; sourceTree = "<group>"; };
 		34C60CA91DC871A800E19B40 /* NotesV1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesV1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C60CAC1DC871A800E19B40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34C60CAE1DC871A800E19B40 /* NoteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +133,7 @@
 				346F3A931DD1E14100802EB2 /* MyUISegmentedColorSelector.xib */,
 				346F3A941DD1E14100802EB2 /* MyUISegmentedColorSelectorSegment.swift */,
 				346F3A951DD1E14100802EB2 /* MyUISegmentedColorSelectorSegment.xib */,
+				34876F251DD5E4E300D00E91 /* ColorsListDataSource.swift */,
 			);
 			path = MyUISegmentedColorSelector;
 			sourceTree = "<group>";
@@ -183,6 +188,7 @@
 				34C60CAC1DC871A800E19B40 /* AppDelegate.swift */,
 				34876F211DD5B4A700D00E91 /* NoteListViewCell.swift */,
 				34C60CAE1DC871A800E19B40 /* NoteListViewController.swift */,
+				34876F231DD5E48100D00E91 /* NoteListDataSource.swift */,
 				34417ADF1DC8D9D9000F994A /* NoteDetailViewController.swift */,
 				34C60CB01DC871A800E19B40 /* Main.storyboard */,
 				34C60CB61DC871A800E19B40 /* Assets.xcassets */,
@@ -382,6 +388,7 @@
 				34D73BAA1DD4539000E58E39 /* UIColorUtils.swift in Sources */,
 				34876F201DD5B3A600D00E91 /* DataServiceProtocol.swift in Sources */,
 				345085841DD33DB20067CB1C /* ServiceLocator.swift in Sources */,
+				34876F241DD5E48100D00E91 /* NoteListDataSource.swift in Sources */,
 				34C60CAF1DC871A800E19B40 /* NoteListViewController.swift in Sources */,
 				346F3A8F1DD1E12900802EB2 /* MyUIHorizontalTable.swift in Sources */,
 				34876F1E1DD5B38400D00E91 /* Note.swift in Sources */,
@@ -394,6 +401,7 @@
 				346F3A9D1DD1FDD500802EB2 /* Settings.swift in Sources */,
 				34876F221DD5B4A700D00E91 /* NoteListViewCell.swift in Sources */,
 				346F3A961DD1E14100802EB2 /* MyUISegmentedColorSelector.swift in Sources */,
+				34876F261DD5E4E300D00E91 /* ColorsListDataSource.swift in Sources */,
 				34C60CAD1DC871A800E19B40 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
