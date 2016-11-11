@@ -64,7 +64,7 @@ class NoteListViewController: UIViewController {
 class NoteListDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
 
     private let serviceLocator = AppDelegate.shared.serviceLocator!
-    private let dataService: IDataService
+    private let dataService: DataServiceProtocol
     private var gen: Int = -1
     private var prefetchedNotes: InvalidatableComputedValue<[Note]>!
 
@@ -114,31 +114,5 @@ class NoteListDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
-    }
-}
-
-class NoteListViewCell: UITableViewCell {
-    @IBOutlet
-    private weak var titleLabel: UILabel!
-
-    @IBOutlet
-    private weak var descriptionLabel: UILabel!
-
-    var title: String? {
-        get {
-            return titleLabel.text
-        }
-        set {
-            titleLabel.text = newValue
-        }
-    }
-
-    var descriptionText: String? {
-        get {
-            return descriptionLabel.text
-        }
-        set {
-            descriptionLabel.text = newValue
-        }
     }
 }

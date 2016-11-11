@@ -23,6 +23,7 @@
 		34876F1B1DD5B19300D00E91 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 34876F1A1DD5B19300D00E91 /* .swiftlint.yml */; };
 		34876F1E1DD5B38400D00E91 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34876F1D1DD5B38400D00E91 /* Note.swift */; };
 		34876F201DD5B3A600D00E91 /* DataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34876F1F1DD5B3A600D00E91 /* DataServiceProtocol.swift */; };
+		34876F221DD5B4A700D00E91 /* NoteListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34876F211DD5B4A700D00E91 /* NoteListViewCell.swift */; };
 		34C60CAD1DC871A800E19B40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C60CAC1DC871A800E19B40 /* AppDelegate.swift */; };
 		34C60CAF1DC871A800E19B40 /* NoteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C60CAE1DC871A800E19B40 /* NoteListViewController.swift */; };
 		34C60CB21DC871A800E19B40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34C60CB01DC871A800E19B40 /* Main.storyboard */; };
@@ -69,6 +70,7 @@
 		34876F1A1DD5B19300D00E91 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		34876F1D1DD5B38400D00E91 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		34876F1F1DD5B3A600D00E91 /* DataServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServiceProtocol.swift; sourceTree = "<group>"; };
+		34876F211DD5B4A700D00E91 /* NoteListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteListViewCell.swift; sourceTree = "<group>"; };
 		34C60CA91DC871A800E19B40 /* NotesV1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesV1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C60CAC1DC871A800E19B40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34C60CAE1DC871A800E19B40 /* NoteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListViewController.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				346F3A911DD1E14100802EB2 /* MyUISegmentedColorSelector */,
 				346F3A8C1DD1E12900802EB2 /* MyUIHorizontalTable */,
 				34C60CAC1DC871A800E19B40 /* AppDelegate.swift */,
+				34876F211DD5B4A700D00E91 /* NoteListViewCell.swift */,
 				34C60CAE1DC871A800E19B40 /* NoteListViewController.swift */,
 				34417ADF1DC8D9D9000F994A /* NoteDetailViewController.swift */,
 				34C60CB01DC871A800E19B40 /* Main.storyboard */,
@@ -393,6 +396,7 @@
 				34C60CB51DC871A800E19B40 /* NotesV1.xcdatamodeld in Sources */,
 				346F3A981DD1E14100802EB2 /* MyUISegmentedColorSelectorSegment.swift in Sources */,
 				346F3A9D1DD1FDD500802EB2 /* Settings.swift in Sources */,
+				34876F221DD5B4A700D00E91 /* NoteListViewCell.swift in Sources */,
 				346F3A961DD1E14100802EB2 /* MyUISegmentedColorSelector.swift in Sources */,
 				34C60CAD1DC871A800E19B40 /* AppDelegate.swift in Sources */,
 			);
