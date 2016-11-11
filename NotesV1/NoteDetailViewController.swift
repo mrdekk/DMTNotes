@@ -143,6 +143,7 @@ class NoteDetailViewController: UIViewController, UITextViewDelegate,
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         alert.addAction(deleteAction)
         alert.addAction(cancelAction)
+        alert.popoverPresentationController?.barButtonItem = deleteButton
         self.present(alert, animated: true, completion: nil)
     }
 
