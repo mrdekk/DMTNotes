@@ -274,6 +274,7 @@
 				TargetAttributes = {
 					34C60CA81DC871A800E19B40 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = Y6SE8BVR7Y;
 						ProvisioningStyle = Automatic;
 					};
 					34C60CBF1DC871A800E19B40 = {
@@ -525,7 +526,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = Y6SE8BVR7Y;
 				INFOPLIST_FILE = NotesV1/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = test.dmt021.NotesV1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -537,7 +540,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = Y6SE8BVR7Y;
 				INFOPLIST_FILE = NotesV1/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = test.dmt021.NotesV1;
 				PRODUCT_NAME = "$(TARGET_NAME)";

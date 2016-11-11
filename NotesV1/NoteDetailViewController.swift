@@ -11,7 +11,7 @@ import UIKit
 class NoteDetailViewController: UIViewController, UITextViewDelegate,
     MyUISegmentedColorSelectorDelegate {
 
-    let serviceLocator = AppDelegate.sharedInstance.serviceLocator!
+    let serviceLocator = AppDelegate.shared.serviceLocator!
 
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var descriptionField: UITextView!
@@ -22,7 +22,7 @@ class NoteDetailViewController: UIViewController, UITextViewDelegate,
 
     // save button ref must be strong so we can add or remove it to/from navbar
     @IBOutlet var saveButton: UIBarButtonItem!
-    
+
     @IBOutlet weak var scrollView: UIScrollView!
 
     var textEditingControl: UITextInput? = nil
@@ -79,9 +79,9 @@ class NoteDetailViewController: UIViewController, UITextViewDelegate,
         var visibleRect = self.view.frame
         visibleRect.size.height -= keyboardFrame.height
         let textEditingFrame = getTextEditingFrame()
-        if textEditingFrame != nil {
-            if !visibleRect.contains(textEditingFrame!.origin) {
-                scrollView.scrollRectToVisible(textEditingFrame!, animated: true)
+        if let textEditingFrame = textEditingFrame {
+            if !visibleRect.contains(textEditingFrame.origin) {
+                scrollView.scrollRectToVisible(textEditingFrame, animated: true)
             }
         }
     }
@@ -113,12 +113,16 @@ class NoteDetailViewController: UIViewController, UITextViewDelegate,
     }
 
     private func getTextEditingFrame() -> CGRect? {
-        if textEditingControl?.selectedTextRange != nil {
-            let a = textEditingControl!.caretRect(for: textEditingControl!.selectedTextRange!.start)
-            let c = self.scrollView.convert(a, from: textEditingControl as? UIView)
-            return c
+        guard
+            let control = textEditingControl,
+            let range = control.selectedTextRange
+            else {
+            return nil
         }
-        return nil
+        
+        let caretRect = control.caretRect(for: range.start)
+        let caretRectConverted = self.scrollView.convert(caretRect, from: textEditingControl as? UIView)
+        return caretRectConverted
     }
 
     @IBAction
@@ -127,18 +131,21 @@ class NoteDetailViewController: UIViewController, UITextViewDelegate,
             title: "Delete",
             message: "Are you sure?",
             preferredStyle: .actionSheet)
-        let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { act in
-            self.deleteConfirmed()
-        })
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) {
+            [weak self]
+            act in
+            guard let sself = self else { return } // sself - strong self
+            sself.deleteConfirmed()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         alert.addAction(deleteAction)
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
     }
 
     private func deleteConfirmed() {
-        if noteId != nil {
-            serviceLocator.dataService.removeNote(noteId: noteId!)
+        if let noteId = noteId {
+            serviceLocator.dataService.removeNote(noteId: noteId)
         }
 
         _ = self.navigationController?.popViewController(animated: true)
@@ -146,16 +153,18 @@ class NoteDetailViewController: UIViewController, UITextViewDelegate,
 
     @IBAction
     private func saveTapped(_ sender: Any) {
-        // copy data from cotrols into dataObject
-        dataItem?.colorId = colorSelector.selectedIndex
-        dataItem?.color = colorSelector.colors[colorSelector.selectedIndex].toHexRgbString()
-        dataItem?.desc = descriptionField.text
-        dataItem?.title = titleField.text
-
-        if noteId == nil {
-            serviceLocator.dataService.addNote(note: dataItem!)
-        } else {
-            serviceLocator.dataService.updateNote(noteId: noteId!, note: dataItem!)
+        if let item = dataItem {
+            // copy data from cotrols into dataObject
+            item.colorId = colorSelector.selectedIndex
+            item.color = colorSelector.colors[colorSelector.selectedIndex].toHexRgbString()
+            item.desc = descriptionField.text
+            item.title = titleField.text
+            
+            if let noteId = noteId {
+                serviceLocator.dataService.updateNote(noteId: noteId, note: dataItem!)
+            } else {
+                serviceLocator.dataService.addNote(note: dataItem!)
+            }
         }
 
         _ = self.navigationController?.popViewController(animated: true)
@@ -166,20 +175,26 @@ class NoteDetailViewController: UIViewController, UITextViewDelegate,
 
         let n = Note()
         n.colorId = 0
-        let ts = Date().description(with: Locale.current)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .full
+        let ts = dateFormatter.string(from: Date())
         n.title = "Note " + ts
         n.desc = "Note created at " + ts
         self.dataItem = n
     }
 
-    func openAsEdit(noteId: Int) {
+    func openAsEdit(noteId: Int) -> Bool {
+        // TODO move this logic to parent VC
         self.noteId = noteId
 
-        if let note = serviceLocator.dataService.getNote(noteId: noteId) {
-            dataItem = note
-        } else {
-            // TODO handle error. Should we show an error message to the user?
+        guard let note = serviceLocator.dataService.getNote(noteId: noteId)
+            else {
+            return false
         }
+        
+        dataItem = note
+        
+        return true
     }
 
     private var noteId: Int?
@@ -191,9 +206,11 @@ class NoteDetailViewController: UIViewController, UITextViewDelegate,
     }
 
     private func configureView() {
-        if titleField == nil ||
-            descriptionField == nil ||
-            colorSelector == nil {
+        guard
+            titleField != nil,
+            descriptionField != nil,
+            colorSelector != nil
+            else {
             return
         }
 

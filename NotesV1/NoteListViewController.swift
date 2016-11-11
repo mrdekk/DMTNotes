@@ -21,12 +21,7 @@ class NoteListViewController: UIViewController {
         tableView.dataSource = notesListDataSource
         tableView.delegate = notesListDataSource
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addNewNote" {
             guard let destController = segue.destination as? NoteDetailViewController
@@ -42,7 +37,17 @@ class NoteListViewController: UIViewController {
                         print("Can't cast segue.destination as NoteDetailViewController")
                         return
                 }
-                destController.openAsEdit(noteId: selectedNoteIndex)
+                let success = destController.openAsEdit(noteId: selectedNoteIndex)
+                if !success {
+                    let alert = UIAlertController(
+                        title: "We are sorry",
+                        message: "The note is unavailable or was removed",
+                        preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "Ok", style: .default)
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true)
+                }
+                // TODO cancel segue
             } else {
                 // TODO handle error
             }
@@ -58,7 +63,7 @@ class NoteListViewController: UIViewController {
 
 class NoteListDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
 
-    private let serviceLocator = AppDelegate.sharedInstance.serviceLocator!
+    private let serviceLocator = AppDelegate.shared.serviceLocator!
     private let dataService: IDataService
     private var gen: Int = -1
     private var prefetchedNotes: InvalidatableComputedValue<[Note]>!

@@ -21,7 +21,7 @@ class MyUISegmentedColorSelector: UIControl, MyUIHorizontalTableDelegate {
 
     var colors: [UIColor] = [] {
         didSet {
-            root.dataSource = ColorsListBasedOnArray(colors:colors)
+            root.dataSource = ColorsListDataSource(colors:colors)
         }
     }
 
@@ -52,7 +52,7 @@ class MyUISegmentedColorSelector: UIControl, MyUIHorizontalTableDelegate {
 }
 
 @objc
-class ColorsListBasedOnArray: NSObject, MyUIHorizontalTableDataSource {
+class ColorsListDataSource: NSObject, MyUIHorizontalTableDataSource {
 
     let colors: [UIColor]
 
@@ -63,8 +63,9 @@ class ColorsListBasedOnArray: NSObject, MyUIHorizontalTableDataSource {
     func numberOfRows(_ table: MyUIHorizontalTable) -> Int {
         return colors.count
     }
+    
     func cell(_ table: MyUIHorizontalTable, forRowAt index: Int) -> MyUIHorizontalTableCell {
-        if let cell = table.getCellForIndex(index: index) as? MyUISegmentedColorSelectorSegment {
+        if let cell = table.cell(for: index) as? MyUISegmentedColorSelectorSegment {
             cell.color = colors[index]
             return cell
         }
@@ -73,13 +74,13 @@ class ColorsListBasedOnArray: NSObject, MyUIHorizontalTableDataSource {
 }
 
 @objc
-class ColorsList: NSObject, MyUIHorizontalTableDataSource {
+class RandomColorsListDataSource: NSObject, MyUIHorizontalTableDataSource {
 
     func numberOfRows(_ table: MyUIHorizontalTable) -> Int {
         return 30
     }
     func cell(_ table: MyUIHorizontalTable, forRowAt index: Int) -> MyUIHorizontalTableCell {
-        if let cell = table.getCellForIndex(index: index) as? MyUISegmentedColorSelectorSegment {
+        if let cell = table.cell(for: index) as? MyUISegmentedColorSelectorSegment {
             cell.color = UIColor(hue: CGFloat(drand48()), saturation: 0.6, brightness: 1, alpha: 1)
             return cell
         }

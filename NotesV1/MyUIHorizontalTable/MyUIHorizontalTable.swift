@@ -22,6 +22,7 @@ protocol MyUIHorizontalTableDelegate :class, NSObjectProtocol {
 
 enum MyUIHorizontalTableError: Error {
     case CellTypeError()
+    case DataSourceIsNotConfigured()
 }
 
 @IBDesignable
@@ -106,7 +107,6 @@ class MyUIHorizontalTable: UIView, MyUIHorizontalTableCellDelegate {
     required init?(coder aDecoder: NSCoder) {
         selectedIndex = -1
         super.init(coder: aDecoder)
-        //dataSource = aDecoder.decodeObject(forKey: "dataSource") as? MyUIHorizontalTableDataSource
         loadSubviewFromXib()
         root.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
         root.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
@@ -118,10 +118,6 @@ class MyUIHorizontalTable: UIView, MyUIHorizontalTableCellDelegate {
         selectedIndex = -1
         super.init(frame: frame)
         loadSubviewFromXib()
-        //root.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
-        //root.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
-        //root.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0).isActive = true
-        //root.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
     }
 
     override func layoutSubviews() {
@@ -136,9 +132,10 @@ class MyUIHorizontalTable: UIView, MyUIHorizontalTableCellDelegate {
                 return
             }
             try initCells()
-            fillCells()
-        } catch {
+            try fillCells()
+        } catch let e {
             // TODO
+            print(e)
         }
     }
 
@@ -153,48 +150,46 @@ class MyUIHorizontalTable: UIView, MyUIHorizontalTableCellDelegate {
         self.cellClass = declaredCellType
     }
 
-    func fillCells() {
-        if dataSource != nil {
-            //let section = 0 // TODO get support for multiple sections
-            let rowsCount = dataSourceTyped!.numberOfRows(self)
+    func fillCells() throws {
+        guard let ds = dataSourceTyped
+            else {
+            throw MyUIHorizontalTableError.DataSourceIsNotConfigured()
+        }
+        
+        //let section = 0 // TODO get support for multiple sections
+        if let rowsCount = dataSourceTyped?.numberOfRows(self) {
             for r in 0..<rowsCount {
-                let cell = createCell()
-                if cell != nil {
-                    cell?.index = r
-                    cellViews.append(cell!)
+                if let cell = createCell() {
+                    cell.index = r
+                    cellViews.append(cell)
                 }
             }
-
+            
             self.stack.subviews.forEach({ v in v.removeFromSuperview() })
             for r in 0..<rowsCount {
-                let cell = dataSource?.cell(self, forRowAt: r)
-                if cell != nil {
-                    self.stack.addArrangedSubview(cell!)
-                }
+                let cell = ds.cell(self, forRowAt: r)
+                self.stack.addArrangedSubview(cell)
             }
         }
     }
 
     // cell factory
-    func createCell() -> MyUIHorizontalTableCell? {
-        if cellClass != nil {
-            let cell = cellClass!.init()
-            cell.delegate = self
-            return cell
-            //return cellClass!.init(frame: CGRect(x: 0, y: 0, width: 30, height: 30 ))
-        }
-        return nil
+    private func createCell() -> MyUIHorizontalTableCell? {
+        guard let cellClass = cellClass else { return nil }
+        
+        let cell = cellClass.init()
+        cell.delegate = self
+        return cell
     }
 
-    func getCellForIndex(index: Int) -> MyUIHorizontalTableCell? {
-        if index >= 0 && index < cellViews.count {
-            return cellViews[index]
+    func cell(for index: Int) -> MyUIHorizontalTableCell? {
+        if index < 0 || index >= cellViews.count {
+            return nil
         }
-        // TODO is exception would be better here?
-        return nil
+        return cellViews[index]
     }
 
-    func cellTapped(_ cell: MyUIHorizontalTableCell) {
+    internal func didTap(_ cell: MyUIHorizontalTableCell) {
         let index = cell.index
         self.selectedIndex = index
     }

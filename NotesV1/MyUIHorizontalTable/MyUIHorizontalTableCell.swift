@@ -10,7 +10,7 @@ import UIKit
 
 @objc
 protocol MyUIHorizontalTableCellDelegate {
-    @objc optional func cellTapped(_ cell: MyUIHorizontalTableCell)
+    @objc optional func didTap(_ cell: MyUIHorizontalTableCell)
 }
 
 @IBDesignable
@@ -56,9 +56,10 @@ class MyUIHorizontalTableCell: UIView, UIGestureRecognizerDelegate {
         self.addGestureRecognizer(tapRecognizer)
     }
 
-    @objc private func tapRecognizerAction() {
-        if delegate != nil {
-            delegate?.cellTapped?(self)
+    @objc
+    private func tapRecognizerAction() {
+        if let delegate = delegate {
+            delegate.didTap?(self)
         }
     }
 }
