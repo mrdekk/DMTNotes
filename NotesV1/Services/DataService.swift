@@ -8,24 +8,7 @@
 
 import Foundation
 
-class Note: NSObject {
-    var order: Int = 0
-    var title: String?
-    var desc: String?
-    var color: String?
-    var colorId: Int = 0
-}
-
-protocol IDataService : class, NSObjectProtocol {
-    func getNotesGeneration() -> Int
-    func getNotes() -> [Note]
-    func getNote(noteId: Int) -> Note?
-    func addNote(note: Note)
-    func removeNote(noteId: Int)
-    func updateNote(noteId: Int, note: Note)
-}
-
-class DumbDataService: NSObject, IDataService {
+class DumbDataService: NSObject, DataServiceProtocol {
     private var backingStorage: [Note] = []
 
     override init() {

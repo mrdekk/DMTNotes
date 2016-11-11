@@ -9,11 +9,11 @@
 import Foundation
 
 protocol ServiceLocatorProtocol {
-    var dataService: IDataService { get }
+    var dataService: DataServiceProtocol { get }
     var defaultSettings: Settings { get }
 }
 
 class ServiceLocator: ServiceLocatorProtocol {
-    var dataService: IDataService = DumbDataService()
+    var dataService: DataServiceProtocol = DumbDataService()
     var defaultSettings: Settings = Settings()
 }

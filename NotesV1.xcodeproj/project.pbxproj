@@ -21,6 +21,8 @@
 		346F3A9F1DD3014400802EB2 /* MyUIHorizontalTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F3A9E1DD3014400802EB2 /* MyUIHorizontalTableCell.swift */; };
 		346F3AA21DD32FA500802EB2 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F3AA11DD32FA500802EB2 /* DataService.swift */; };
 		34876F1B1DD5B19300D00E91 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 34876F1A1DD5B19300D00E91 /* .swiftlint.yml */; };
+		34876F1E1DD5B38400D00E91 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34876F1D1DD5B38400D00E91 /* Note.swift */; };
+		34876F201DD5B3A600D00E91 /* DataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34876F1F1DD5B3A600D00E91 /* DataServiceProtocol.swift */; };
 		34C60CAD1DC871A800E19B40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C60CAC1DC871A800E19B40 /* AppDelegate.swift */; };
 		34C60CAF1DC871A800E19B40 /* NoteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C60CAE1DC871A800E19B40 /* NoteListViewController.swift */; };
 		34C60CB21DC871A800E19B40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34C60CB01DC871A800E19B40 /* Main.storyboard */; };
@@ -65,6 +67,8 @@
 		346F3A9E1DD3014400802EB2 /* MyUIHorizontalTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUIHorizontalTableCell.swift; sourceTree = "<group>"; };
 		346F3AA11DD32FA500802EB2 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		34876F1A1DD5B19300D00E91 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		34876F1D1DD5B38400D00E91 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		34876F1F1DD5B3A600D00E91 /* DataServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServiceProtocol.swift; sourceTree = "<group>"; };
 		34C60CA91DC871A800E19B40 /* NotesV1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesV1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C60CAC1DC871A800E19B40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34C60CAE1DC871A800E19B40 /* NoteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListViewController.swift; sourceTree = "<group>"; };
@@ -134,8 +138,17 @@
 			children = (
 				346F3AA11DD32FA500802EB2 /* DataService.swift */,
 				345085831DD33DB20067CB1C /* ServiceLocator.swift */,
+				34876F1F1DD5B3A600D00E91 /* DataServiceProtocol.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		34876F1C1DD5B37600D00E91 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				34876F1D1DD5B38400D00E91 /* Note.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		34C60CA01DC871A800E19B40 = {
@@ -162,6 +175,7 @@
 		34C60CAB1DC871A800E19B40 /* NotesV1 */ = {
 			isa = PBXGroup;
 			children = (
+				34876F1C1DD5B37600D00E91 /* Model */,
 				34D73BA81DD4537E00E58E39 /* Utils */,
 				346F3AA01DD32F9A00802EB2 /* Services */,
 				346F3A911DD1E14100802EB2 /* MyUISegmentedColorSelector */,
@@ -366,10 +380,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				34D73BAA1DD4539000E58E39 /* UIColorUtils.swift in Sources */,
+				34876F201DD5B3A600D00E91 /* DataServiceProtocol.swift in Sources */,
 				345085841DD33DB20067CB1C /* ServiceLocator.swift in Sources */,
 				34D73BAC1DD4703000E58E39 /* InvalidatableComputedValue.swift in Sources */,
 				34C60CAF1DC871A800E19B40 /* NoteListViewController.swift in Sources */,
 				346F3A8F1DD1E12900802EB2 /* MyUIHorizontalTable.swift in Sources */,
+				34876F1E1DD5B38400D00E91 /* Note.swift in Sources */,
 				34417AE01DC8D9D9000F994A /* NoteDetailViewController.swift in Sources */,
 				3421AB1E1DCB637900FF64BD /* UICustomControlHelper.swift in Sources */,
 				346F3A9F1DD3014400802EB2 /* MyUIHorizontalTableCell.swift in Sources */,
