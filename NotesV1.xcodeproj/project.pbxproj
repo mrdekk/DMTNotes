@@ -33,7 +33,6 @@
 		34C60CC51DC871A800E19B40 /* NotesV1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C60CC41DC871A800E19B40 /* NotesV1Tests.swift */; };
 		34C60CD01DC871A800E19B40 /* NotesV1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C60CCF1DC871A800E19B40 /* NotesV1UITests.swift */; };
 		34D73BAA1DD4539000E58E39 /* UIColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D73BA91DD4539000E58E39 /* UIColorUtils.swift */; };
-		34D73BAC1DD4703000E58E39 /* InvalidatableComputedValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D73BAB1DD4703000E58E39 /* InvalidatableComputedValue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,7 +85,6 @@
 		34C60CCF1DC871A800E19B40 /* NotesV1UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesV1UITests.swift; sourceTree = "<group>"; };
 		34C60CD11DC871A800E19B40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34D73BA91DD4539000E58E39 /* UIColorUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorUtils.swift; sourceTree = "<group>"; };
-		34D73BAB1DD4703000E58E39 /* InvalidatableComputedValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvalidatableComputedValue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,7 +218,6 @@
 			children = (
 				3421AB1D1DCB637900FF64BD /* UICustomControlHelper.swift */,
 				34D73BA91DD4539000E58E39 /* UIColorUtils.swift */,
-				34D73BAB1DD4703000E58E39 /* InvalidatableComputedValue.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -385,7 +382,6 @@
 				34D73BAA1DD4539000E58E39 /* UIColorUtils.swift in Sources */,
 				34876F201DD5B3A600D00E91 /* DataServiceProtocol.swift in Sources */,
 				345085841DD33DB20067CB1C /* ServiceLocator.swift in Sources */,
-				34D73BAC1DD4703000E58E39 /* InvalidatableComputedValue.swift in Sources */,
 				34C60CAF1DC871A800E19B40 /* NoteListViewController.swift in Sources */,
 				346F3A8F1DD1E12900802EB2 /* MyUIHorizontalTable.swift in Sources */,
 				34876F1E1DD5B38400D00E91 /* Note.swift in Sources */,
