@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AvailableNoteColors</key>
+	<array>
+		<string>#FFFFFF</string>
+		<string>#FF6666</string>
+		<string>#FFCC66</string>
+		<string>#FFFF66</string>
+		<string>#CCFF66</string>
+		<string>#66FF66</string>
+		<string>#66FFCC</string>
+		<string>#66FFFF</string>
+		<string>#66CCFF</string>
+		<string>#6666FF</string>
+		<string>#CC66FF</string>
+		<string>#FF66FF</string>
+		<string>#FF6FCF</string>
+	</array>
+</dict>
+</plist>

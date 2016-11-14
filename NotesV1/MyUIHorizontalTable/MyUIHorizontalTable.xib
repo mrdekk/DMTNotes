@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyUIHorizontalTable">
+            <connections>
+                <outlet property="root" destination="idS-6h-v9Q" id="A7a-FL-pma"/>
+                <outlet property="stack" destination="KjG-ra-TMq" id="5RM-f9-gwK"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="idS-6h-v9Q">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="47"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="KjG-ra-TMq" userLabel="stack">
+                    <rect key="frame" x="0.0" y="0.0" width="70" height="47"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eDJ-QJ-Qja" userLabel="segment">
+                            <rect key="frame" x="0.0" y="0.0" width="30" height="47"/>
+                            <color key="backgroundColor" red="0.93476506150000005" green="1" blue="0.4254461021" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="eIA-o9-j88"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F7z-5M-Kce" userLabel="segment">
+                            <rect key="frame" x="40" y="0.0" width="30" height="47"/>
+                            <color key="backgroundColor" red="0.93476506150000005" green="1" blue="0.4254461021" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="xac-LM-pIr"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.96191401980000002" alpha="1" colorSpace="calibratedRGB"/>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="KjG-ra-TMq" firstAttribute="leading" secondItem="idS-6h-v9Q" secondAttribute="leading" id="0RN-LS-els"/>
+                <constraint firstAttribute="trailing" secondItem="KjG-ra-TMq" secondAttribute="trailing" id="D8V-sD-vuV"/>
+                <constraint firstItem="KjG-ra-TMq" firstAttribute="height" secondItem="idS-6h-v9Q" secondAttribute="height" id="L30-Fn-2KB"/>
+                <constraint firstAttribute="bottom" secondItem="KjG-ra-TMq" secondAttribute="bottom" id="ifv-4v-9aw"/>
+                <constraint firstItem="KjG-ra-TMq" firstAttribute="top" secondItem="idS-6h-v9Q" secondAttribute="top" id="pCc-cn-TM6"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="303.5" y="-303.5"/>
+        </scrollView>
+        <tapGestureRecognizer id="tf5-Rc-WR0"/>
+    </objects>
+</document>
