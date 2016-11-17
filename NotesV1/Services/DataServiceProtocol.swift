@@ -9,10 +9,10 @@
 import Foundation
 
 protocol DataServiceProtocol : class, NSObjectProtocol {
-    func getNotes() -> [Note]
-    func getNotesCount() -> Int
-    func getNote(noteId: Int) -> Note?
-    func addNote(note: Note) -> Int
-    func removeNote(noteId: Int)
-    func updateNote(noteId: Int, note: Note)
+    func getNotes(_ completion: (([Note]?) -> ())?)
+    func getNotesCount(_ completion: ((Int?) -> ())?)
+    func getNote(noteId: String, _ completion: ((Note?) -> ())?)
+    func addNote(note: Note, _ completion: ((Bool) -> (Swift.Void))?)
+    func updateNote(noteId: String, note: Note, _ completion: ((Bool) -> (Swift.Void))?)
+    func removeNote(noteId: String, _ completion: ((Bool) -> (Swift.Void))?)
 }

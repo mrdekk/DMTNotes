@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Api</key>
+	<dict>
+		<key>BaseUrl</key>
+		<string>http://localhost:3000/</string>
+	</dict>
 	<key>AvailableNoteColors</key>
 	<array>
 		<string>#FFFFFF</string>

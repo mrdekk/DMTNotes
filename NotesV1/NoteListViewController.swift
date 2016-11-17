@@ -17,9 +17,21 @@ class NoteListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        if let tableDataSource = tableView.dataSource as? NoteListDataSource {
+            tableDataSource.fetch {
+                [weak self]
+                isSuccess in
+                if !isSuccess {
+                    return
+                }
+                DispatchQueue.main.async {
+                    self?.tableView?.reloadData()
+                }
+            }
+        }
     }
     
-    var selectedNoteId: Int?
+    var selectedNoteId: String?
     var noteObjectToEdit: Note?
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
@@ -27,12 +39,13 @@ class NoteListViewController: UIViewController {
             selectedNoteId = nil
             noteObjectToEdit = nil
         } else if identifier == "editNote" {
-            guard let selectedNoteIndex = self.tableView.indexPathForSelectedRow?.row
+            guard let selectedNoteIndexPath = self.tableView.indexPathForSelectedRow
                 else {
                     return false
             }
             
-            guard let note = serviceLocator.dataService.getNote(noteId: selectedNoteIndex)
+            guard let note = (self.tableView.dataSource as? NoteListDataSource)?
+                .getNoteBy(indexPath: selectedNoteIndexPath)
                 else {
                     let alert = UIAlertController(
                         title: "We are sorry",
@@ -45,7 +58,7 @@ class NoteListViewController: UIViewController {
                     return false
             }
             
-            selectedNoteId = selectedNoteIndex
+            selectedNoteId = note.id
             noteObjectToEdit = note
         }
         return super.shouldPerformSegue(withIdentifier: identifier, sender: sender)
@@ -65,21 +78,46 @@ class NoteListViewController: UIViewController {
     }
     
     private func noteUpdated(_ note: Note?) {
-        let ds = serviceLocator.dataService
+        guard let ds = self.tableView.dataSource as? NoteListDataSource else {
+            return
+        }
         if let noteId = selectedNoteId {
             if let note = note {
-                ds.updateNote(noteId: noteId, note: note)
-                tableView.reloadRows(at: [IndexPath(row: noteId, section: 0)], with: .automatic)
+                ds.updateNote(noteId: noteId, note: note) {
+                    [weak self]
+                    updatedAtIndexPath in
+                    guard let updatedAtIndexPath = updatedAtIndexPath else {
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        self?.tableView?.reloadRows(at: [updatedAtIndexPath], with: .automatic)
+                    }
+                }
             } else {
-                ds.removeNote(noteId: noteId)
-                tableView.deleteRows(at: [IndexPath(row: noteId, section: 0)], with: .automatic)
+                ds.removeNote(noteId: noteId) {
+                    [weak self]
+                    removedAtIndexPath in
+                    guard let removedAtIndexPath = removedAtIndexPath else {
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        self?.tableView?.deleteRows(at: [removedAtIndexPath], with: .automatic)
+                    }
+                }
             }
         } else {
             guard let note = note else { return }
             
-            let newNoteId = ds.addNote(note: note)
-            
-            tableView.insertRows(at: [IndexPath(row: newNoteId, section: 0)], with: .automatic)
+            ds.addNote(note: note) {
+                [weak self]
+                addedAtIndexPath in
+                guard let addedAtIndexPath = addedAtIndexPath else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    self?.tableView?.insertRows(at: [addedAtIndexPath], with: .automatic)
+                }
+            }
         }
     }
 }
