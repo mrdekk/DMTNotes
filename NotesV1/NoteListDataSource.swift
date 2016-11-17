@@ -32,14 +32,11 @@ class NoteListDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         dataService.addNote(note: note) {
             [weak self]
             isSuccess in
-            guard isSuccess else {
-                completion?(nil)
-                return
-            }
-            
-            guard let sself = self else {
-                completion?(nil)
-                return
+            guard isSuccess,
+                let sself = self
+                else {
+                    completion?(nil)
+                    return
             }
             
             // add to internal
@@ -56,19 +53,12 @@ class NoteListDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         dataService.updateNote(noteId: noteId, note: note) {
             [weak self]
             isSuccess in
-            guard isSuccess else {
-                completion?(nil)
-                return
-            }
-            
-            guard let sself = self else {
-                completion?(nil)
-                return
-            }
-            
-            guard let indexPath = sself.getIndexPath(byNoteId: noteId) else {
-                completion?(nil)
-                return
+            guard isSuccess,
+                let sself = self,
+                let indexPath = sself.getIndexPath(byNoteId: noteId)
+                else {
+                    completion?(nil)
+                    return
             }
             
             let index = indexPath.row
@@ -82,19 +72,12 @@ class NoteListDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         dataService.removeNote(noteId: noteId) {
             [weak self]
             isSuccess in
-            guard isSuccess else {
-                completion?(nil)
-                return
-            }
-            
-            guard let sself = self else {
-                completion?(nil)
-                return
-            }
-            
-            guard let indexPath = sself.getIndexPath(byNoteId: noteId) else {
-                completion?(nil)
-                return
+            guard isSuccess,
+                let sself = self,
+                let indexPath = sself.getIndexPath(byNoteId: noteId)
+                else {
+                    completion?(nil)
+                    return
             }
             
             let index = indexPath.row
@@ -110,14 +93,11 @@ class NoteListDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         dataService.getNotes {
             [weak self]
             notes in
-            guard let sself = self else {
-                completion?(false)
-                return
-            }
-            
-            guard let notes = notes else {
-                completion?(false)
-                return
+            guard let sself = self,
+                let notes = notes
+                else {
+                    completion?(false)
+                    return
             }
             
             sself.fetchedItems.removeAll()
