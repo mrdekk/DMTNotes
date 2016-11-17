@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3421AB1E1DCB637900FF64BD /* UICustomControlHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3421AB1D1DCB637900FF64BD /* UICustomControlHelper.swift */; };
+		34381BB81DDD867A00566BD7 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34381BB71DDD867A00566BD7 /* NetworkService.swift */; };
 		34417AE01DC8D9D9000F994A /* NoteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34417ADF1DC8D9D9000F994A /* NoteDetailViewController.swift */; };
 		345085841DD33DB20067CB1C /* ServiceLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345085831DD33DB20067CB1C /* ServiceLocator.swift */; };
 		346F3A8F1DD1E12900802EB2 /* MyUIHorizontalTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F3A8D1DD1E12900802EB2 /* MyUIHorizontalTable.swift */; };
@@ -59,6 +60,7 @@
 
 /* Begin PBXFileReference section */
 		3421AB1D1DCB637900FF64BD /* UICustomControlHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UICustomControlHelper.swift; path = ../UICustomControlHelper.swift; sourceTree = "<group>"; };
+		34381BB71DDD867A00566BD7 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		34417ADF1DC8D9D9000F994A /* NoteDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteDetailViewController.swift; sourceTree = "<group>"; };
 		345085831DD33DB20067CB1C /* ServiceLocator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceLocator.swift; sourceTree = "<group>"; };
 		346F3A8D1DD1E12900802EB2 /* MyUIHorizontalTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUIHorizontalTable.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				346F3AA11DD32FA500802EB2 /* DataService.swift */,
 				345085831DD33DB20067CB1C /* ServiceLocator.swift */,
 				34876F1F1DD5B3A600D00E91 /* DataServiceProtocol.swift */,
+				34381BB71DDD867A00566BD7 /* NetworkService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34381BB81DDD867A00566BD7 /* NetworkService.swift in Sources */,
 				34D73BAA1DD4539000E58E39 /* UIColorUtils.swift in Sources */,
 				34876F201DD5B3A600D00E91 /* DataServiceProtocol.swift in Sources */,
 				345085841DD33DB20067CB1C /* ServiceLocator.swift in Sources */,

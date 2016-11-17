@@ -9,6 +9,23 @@
 import UIKit
 import Foundation
 
+class SettingsApi {
+    lazy var baseUrl: URL? = {
+        [weak self] in
+        guard let urlStr = self?.dict.value(forKey: "BaseUrl") as? String else {
+            return nil
+        }
+        
+        return URL(string: urlStr)
+    }()
+    
+    private var dict: NSDictionary
+    
+    init(dict: NSDictionary) {
+        self.dict = dict
+    }
+}
+
 class Settings {
     lazy var availableNoteColors: [UIColor] = {
         [unowned self] in
@@ -17,6 +34,15 @@ class Settings {
             return colors
         }
         return []
+    }()
+    
+    lazy var api: SettingsApi? = {
+        [weak self] in
+        guard let apiDict = self?.dict.value(forKey: "Api") as? NSDictionary else {
+            return nil
+        }
+        
+        return SettingsApi(dict: apiDict)
     }()
 
     private let dict: NSDictionary

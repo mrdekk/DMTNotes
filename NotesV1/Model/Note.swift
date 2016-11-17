@@ -33,6 +33,36 @@ class Note: NSObject {
         title = dbNote.title
         super.init()
     }
+    
+    init?(fromDict dict: [String: Any]) {
+        guard let id = dict["id"] as? String else {
+                return nil
+        }
+        
+        let order = dict["order"] as? Int
+        let title = dict["title"] as? String
+        let desc = dict["desc"] as? String
+        let color = dict["color"] as? String
+        let colorId = dict["colorId"] as? Int
+        
+        self.id = id
+        self.order = order ?? 0
+        self.title = title
+        self.desc = desc
+        self.color = color
+        self.colorId = colorId ?? 0
+    }
+    
+    func mapToDictionary() -> [String: Any] {
+        var result: [String: Any] = [:]
+        result["id"] = id
+        result["order"] = order
+        result["title"] = title
+        result["desc"] = desc
+        result["color"] = color
+        result["colorId"] = colorId
+        return result
+    }
 }
 
 extension Note {
