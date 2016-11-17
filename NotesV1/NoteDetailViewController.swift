@@ -198,7 +198,8 @@ class NoteDetailViewController: UIViewController, UITextViewDelegate,
             let n = Note()
             n.colorId = 0
             let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .full
+            dateFormatter.dateStyle = .long
+            dateFormatter.timeStyle = .long
             let ts = dateFormatter.string(from: Date())
             n.title = "Note " + ts
             n.desc = "Note created at " + ts
